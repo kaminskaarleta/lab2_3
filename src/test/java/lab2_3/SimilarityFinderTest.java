@@ -42,5 +42,15 @@ public class SimilarityFinderTest {
 		assertThat(result, is(0.25d));
 	}
 
-	
+	@Test
+	public void similarityFinder_shouldBeNotEquals1() {
+		SequenceSearcherDubler searcher = new SequenceSearcherDubler();
+		SimilarityFinder similarityFinder = new SimilarityFinder(searcher);
+		
+		int[] seq1 = {1,5,3,5,8};
+		int[] seq2 = {2,3,4,7,8};
+		
+		double result = similarityFinder.calculateJackardSimilarity(seq1, seq2);
+		assertThat(result, is(not(1.0d)));
+	}
 }
