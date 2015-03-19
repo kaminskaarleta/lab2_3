@@ -65,4 +65,29 @@ public class SimilarityFinderTest {
 		double result = similarityFinder.calculateJackardSimilarity(seq1, seq2);
 		assertThat(result, is(1.0d));
 	}
+	
+	@Test
+	public void similarityFinder_runSearchCount_shouldBeEquals5() {
+		SequenceSearcherDubler searcher = new SequenceSearcherDubler();
+		SimilarityFinder similarityFinder = new SimilarityFinder(searcher);
+		
+		int[] seq1 = {1,5,3,5,8};
+		int[] seq2 = {2,3,4,7,8};
+		
+		similarityFinder.calculateJackardSimilarity(seq1, seq2);
+		assertThat(searcher.getSearchCounter(), is(5));
+	}
+	
+	@Test
+	public void similarityFinder_runSearchKeyCount_shouldBeEquals2() {
+		SequenceSearcherDubler searcher = new SequenceSearcherDubler();
+		SimilarityFinder similarityFinder = new SimilarityFinder(searcher);
+		
+		int[] seq1 = {1,5,3,5,8};
+		int[] seq2 = {2,3,4,7,8};
+		
+		similarityFinder.calculateJackardSimilarity(seq1, seq2);
+		assertThat(searcher.getKey5SearchCounter(), is(2));
+	}
+
 }
