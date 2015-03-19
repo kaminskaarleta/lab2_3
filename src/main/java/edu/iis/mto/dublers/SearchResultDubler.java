@@ -4,8 +4,14 @@ import edu.iis.mto.search.SearchResult;
 
 public class SearchResultDubler implements SearchResult{
 
+	boolean result;
+	
+	public SearchResultDubler(boolean result){
+		this.result = result;
+	}
+	
 	public boolean isFound() {
-		return false;
+		return result;
 	}
 
 	public int getPosition() {
